@@ -12,6 +12,7 @@ import org.smartregister.BuildConfig;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
 import org.smartregister.R;
+import org.smartregister.account.AccountHelper;
 import org.smartregister.repository.DrishtiRepository;
 import org.smartregister.repository.Repository;
 import org.smartregister.sync.ClientProcessorForJava;
@@ -113,7 +114,7 @@ public abstract class DrishtiApplication extends Application {
         if (password == null) {
 
             String username = context.userService().getAllSharedPreferences().fetchRegisteredANM();
-            password = context.userService().getAccountSecretKey(username);
+            password = context.userService().getDecryptedPreferenceValue(username);
         }
 
         return password;
