@@ -93,7 +93,7 @@ android {
         versionName project.VERSION_NAME
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
-        buildConfigField "int", "ENCRYPTION_VERSION", '1'
+        buildConfigField "int", "DB_ENCRYPTION_VERSION", '1'
     }
 
     sourceSets {
@@ -176,8 +176,6 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }
-
-    implementation 'org.smartregister:opensrp-plan-evaluator:0.0.19-SNAPSHOT'
     implementation('ch.acra:acra:4.5.0') {
         exclude group: 'org.json', module: 'json'
     }

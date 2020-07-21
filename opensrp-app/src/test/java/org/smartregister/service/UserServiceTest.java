@@ -12,7 +12,6 @@ import org.smartregister.BaseUnitTest;
 import org.smartregister.CoreLibrary;
 import org.smartregister.DristhiConfiguration;
 import org.smartregister.SyncConfiguration;
-import org.smartregister.domain.LoginResponse;
 import org.smartregister.domain.TimeStatus;
 import org.smartregister.domain.jsonmapping.LoginResponseData;
 import org.smartregister.domain.jsonmapping.Time;
@@ -69,7 +68,7 @@ public class UserServiceTest extends BaseUnitTest {
     @Mock
     private DrishtiApplication drishtiApplication;
 
-    byte[] password = "password Z".getBytes();
+    private byte[] password = "password Z".getBytes();
 
     @Before
     public void setUp() {
@@ -169,7 +168,7 @@ public class UserServiceTest extends BaseUnitTest {
 
 
     public void shouldDeleteDataAndSettingsWhenLogoutHappens() {
-        SyncConfiguration syncConfiguration = Mockito.mock(SyncConfiguration.class);
+        SyncConfiguration syncConfiguration = mock(SyncConfiguration.class);
         Mockito.doReturn(false).when(syncConfiguration).clearDataOnNewTeamLogin();
         ReflectionHelpers.setField(CoreLibrary.getInstance(), "syncConfiguration", syncConfiguration);
 
