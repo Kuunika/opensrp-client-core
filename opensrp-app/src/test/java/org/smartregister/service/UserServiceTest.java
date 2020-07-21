@@ -83,35 +83,6 @@ public class UserServiceTest extends BaseUnitTest {
     }
 
     @Test
-    public void shouldUseHttpAgentToDoRemoteLoginCheck() {
-
-        LoginResponseData userInfo = new LoginResponseData();
-
-        User userObject = new User();
-        userObject.setUsername("user");
-        userObject.setPassword("password Y");
-        userInfo.user = userObject;
-
-        LoginResponse loginResponse = LoginResponse.SUCCESS.withPayload(userInfo);
-
-        when(configuration.dristhiBaseURL()).thenReturn("http://dristhi_base_url");
-        String httpAuthenticateUrl = "http://dristhi_base_url/security/authenticate";
-        String user = "user";
-        String password = "password Y";
-
-        when(httpAgent.urlCanBeAccessWithGivenCredentials(
-                httpAuthenticateUrl,
-                user,
-                password.toCharArray())).thenReturn(loginResponse);
-
-        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("user");
-
-        userService.isValidRemoteLogin(user, password.toCharArray());
-
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials(httpAuthenticateUrl, user, password.toCharArray());
-    }
-
-    @Test
     public void shouldGetANMLocation() {
         when(configuration.dristhiBaseURL()).thenReturn("http://opensrp_base_url");
         userService.getLocationInformation();
